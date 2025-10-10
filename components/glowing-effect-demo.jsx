@@ -6,14 +6,14 @@ import Image from "next/image";
 export function GlowingEffectDemo() {
   return (
     <ul
-  className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[44rem] xl:grid-rows-2 mx-auto"
+  className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[44rem] xl:grid-rows-2 mx-auto "
 >
   {/* Card 1 */}
   <GridItem
     area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
     icon={<Brain className="relative z-10 h-8 w-8 text-cyan-200 " />}
     img="/hover4.png"
-      imgClassName="absolute bottom-[-120px] left-[-70px] w-[310px] h-[400px] "
+      imgClassName="absolute bottom-[-120px] left-[-70px] max-sm:-[300px] max-sm:h-[300px] max-sm:bottom-[-40px] max-sm:opacity-50 w-[310px] h-[400px] "
     title="Smarter Workflows, Faster Results"
     description="Unlock next-gen automation tools that simplify your process and boost creativity."
   />
@@ -25,7 +25,7 @@ export function GlowingEffectDemo() {
     title="AI-Powered Code & Creativity"
     description="Write, build, and innovate with AI tools designed to accelerate your ideas."
     img="/service8.png"
-    imgClassName="absolute bottom-[-10px] left-[-10px] w-[300px] h-[300px]"
+    imgClassName="absolute bottom-[-10px] left-[-10px] w-[300px] h-[300px] max-sm:-[250px] max-sm:h-[250px] max-sm:bottom-[2px] max-sm:left-[-90px] max-sm:opacity-50"
   />
 
   {/* Card 3 */}
@@ -33,7 +33,7 @@ export function GlowingEffectDemo() {
     area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
     icon={<AtomIcon className="h-8 w-8 text-cyan-200 " />}
     img="/serviceRobot.png"
-    imgClassName="absolute bottom-[-160px] left-[-200px] w-[600px] h-[600px]"
+    imgClassName="absolute bottom-[-160px] left-[-200px] w-[600px] h-[600px] max-sm:bottom-[-130px] max-sm:left-[-230px]  max-sm:-[300px] max-sm:h-[300px] max-sm:opacity-50"
 
   />
 

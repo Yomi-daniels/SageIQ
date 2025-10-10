@@ -50,7 +50,7 @@ export default function Header() {
 
   return (
     <header
-      className={`w-full flex items-center justify-between px-6 md:px-8 py-4 fixed top-0 left-0 z-50 transition-all duration-300 z-50  
+      className={`w-full flex items-center justify-between px-6 md:px-8 py-4 fixed top-0 left-0 z-50 transition-all duration-300 
         ${scrolled ? "bg-[#0E0C15] shadow-md z-50" : "bg-transparent"} 
         ${hidden ? "-translate-y-full" : "translate-y-0 max-sm:border max-sm:border-gray-400 max-sm:rounded-full max-sm:mt-6 max-sm:w-[90%] max-sm:flex max-sm:ml-6 max-sm:bg-black max-sm:mx-auto z-50"} `}
     >

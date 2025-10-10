@@ -9,11 +9,12 @@ import Services from "@/components/Services"
 import About from "@/components/About"
 import {GlowingEffectDemo} from "@/components/glowing-effect-demo"
 import StickyScrollRevealDemo from "@/components/sticky-scroll-reveal-demo"
+import AppleCardsCarouselDemo from "@/components/apple-cards-carousel-demo"
 
 export default function ShaderShowcase() {
   return (
     <div>
-      <div className="h-full relative">
+      <div className="h-full relative ">
         <ShaderBackground>
           <Header />
         
@@ -23,7 +24,8 @@ export default function ShaderShowcase() {
       </div>
     {/* <About/> */}
       <Services/>
-      <StickyScrollRevealDemo/>
+      {/* <StickyScrollRevealDemo/> */}
+      <AppleCardsCarouselDemo/>
          {/* <About/> */}
       {/* <GlowingEffectDemo /> */}
     </div>

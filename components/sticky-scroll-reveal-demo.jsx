@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import Image from "next/image";
 
 const content = [
   {
@@ -18,14 +19,15 @@ const content = [
     description:
       "With live data analysis and instant insights, Sage IQ helps you make better decisions on the spot. From tracking metrics to generating reports, your knowledge is always up-to-date.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-black/70">
-        <img
-          src="/linear.webp"
-          width={600}
-          height={600}
-          className="h-[85%] w-[85%] object-cover rounded-2xl shadow-2xl"
-          alt="sage iq dashboard"
-        />
+      <div className="flex h-full w-full items-center justify-center bg-black/70 transform-gpu">
+    <Image
+  src="/linear.webp"
+  width={600}
+  height={600}
+  className="h-[85%] w-[85%] object-cover rounded-2xl shadow-2xl"
+  alt="sage iq dashboard"
+  priority
+/>
       </div>
     ),
   },
@@ -53,12 +55,16 @@ const content = [
 
 export default function StickyScrollRevealDemo() {
   return (
+    
     <div className="w-full py-20 px-6">
+        {/* Background Gradient Glow */}
+      <RadialGlow className="top-[-10rem] left-[-10rem]" size={700} color="#16EFFF" />
+      <RadialGlow className="bottom-[-8rem] right-[-8rem]" size={600} color="#16EFFF" />
       <StickyScroll
         content={content.map((item) => ({
           ...item,
           title: (
-            <span className="text-4xl font-bold tracking-tight text-white drop-shadow-lg">
+            <span className="text-4xl font-bold tracking-tight text-white ">
               {item.title}
             </span>
           ),
