@@ -26,19 +26,34 @@ export default function HeroContent() {
   
   return (
     
-    <section className="relative w-full h-[140vh] max-sm:h-[100dvh] flex flex-col justify-between items-center text-center pt-32 pb-16 font- overflow-hidden">
+    <section className="relative w-full h-[140vh] max-sm:h-[100dvh] flex flex-col justify-between items-center text-center pt-32 pb-16 font- overflow-hidden ">
       {/* Text Content */}
       <div className="relative max-w-3xl mx-auto px-4 z-10 flex flex-col items-center justify-center ">
         {/* Badge */}
-        <div
-          className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 backdrop-blur-sm mb-6 relative"
-          style={{ filter: "url(#glass-effect)" }}
-        >
-          <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full" />
-          <span className="text-white/90 text-sm font-light relative z-10 font-body">
-            ✨ AI Meets Innovation
-          </span>
-        </div>
+       {/* AI Generating Badge */}
+<div
+  className="inline-flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 backdrop-blur-md mb-6 relative overflow-hidden w-[240px] shadow-lg border border-white/10"
+  style={{ filter: "url(#glass-effect)" }}
+>
+  {/* Subtle top light line */}
+  <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-e-lg" />
+
+  {/* Text */}
+  <span className="text-white/90 text-sm font-medium relative z-10 font-body mb-2 tracking-wide">
+    AI is generating<span className="animate-pulse ml-1">...</span>
+  </span>
+
+  {/* Loading Progress Bar */}
+  <div className="relative w-full h-[4px] bg-white/10 rounded-full overflow-hidden">
+    <div
+      className="absolute left-0 top-0 h-full rounded-full animate-progress"
+      style={{
+        background: "#00D2FF",
+      }}
+    />
+  </div>
+</div>
+
 
         {/* Main Heading */}
         <h1 className="text-[3.5rem] relative lg:w-[1200px] md:max-w-[1200px] max-sm:max-w-[1200px] max-sm:text-[2.5rem] text-white mb-6 font-heading font-[100] leading-[1]">
@@ -46,12 +61,13 @@ export default function HeroContent() {
         
             <span className="inline-block relative text-cyan-400 font-bold">
               SageIQ {" "}
-              <img
+              <Image
                 src="/curve.png"
                 className="absolute top-full left-0 w-full xl:-mt-2"
                 width={624}
                 height={28}
                 alt="Curve"
+                loading="lazy"
               />
             </span>
         </h1>
@@ -104,7 +120,17 @@ export default function HeroContent() {
                 </ScrollParallax>
               </div> */}
               {/* <CardStack /> */}
-                <Image src="/Group 22.png" alt="AI" className="w-full h-full " fill objectFit="contain" />
+     <Image
+  src="/hero-image.png"
+  alt="AI"
+  fill
+  style={{ objectFit: "contain" }}
+  loading="lazy"
+  quality={75}
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+/>
+
+
             </div>
 
             <Gradient />

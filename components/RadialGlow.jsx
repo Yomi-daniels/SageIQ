@@ -1,6 +1,6 @@
 import React from "react";
 
-const RadialGlow = ({ size = 600, color = "#00D2FF", className = "" }) => {
+const RadialGlow = ({ size = 400, color = "#00D2FF", className = "" }) => {
   return (
     <div
       className={`absolute pointer-events-none ${className}`}

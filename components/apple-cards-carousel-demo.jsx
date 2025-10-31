@@ -1,95 +1,110 @@
 "use client";
 
-import React from "react";
+import React, { useMemo, memo } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Image from "next/image";
+import CustomCursor from "@/components/CustomCursor";
+// Memoized content component to prevent unnecessary re-renders
+const DummyContent = memo(() => {
+  const contents = useMemo(() => [
+    {
+      title: "AI that adapts to your workflow.",
+      text: "SageIQ helps you turn complex data into clear, actionable insights — powered by adaptive intelligence designed for business growth.",
+      img: "/ai-dashboard.png",
+    },
+    {
+      title: "Smarter automation, faster results.",
+      text: "Cut repetitive tasks and scale your efficiency. SageIQ automates your operations while keeping you in full control.",
+      img: "/automation-preview.png",
+    },
+    {
+      title: "Next-gen analytics you can trust.",
+      text: "From predictive trends to real-time data visualization, SageIQ redefines how teams analyze and make smarter decisions.",
+      img: "/analytics-insight.png",
+    },
+  ], []);
 
-export default function AppleCardsCarouselDemo() {
-  const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
-  ));
-
-  return (
-    <div className="w-full h-full py-20">
-      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-neutral-800 dark:text-neutral-200 font-sans">
-        Get to know <span className="text-cyan-300">Sageiq.</span>
-      </h2>
-      <Carousel items={cards} />
-    </div>
-  );
-}
-
-const DummyContent = () => {
   return (
     <>
-      {[...new Array(3).fill(1)].map((_, index) => {
-        return (
-          <div
-            key={"dummy-content" + index}
-            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
-          >
-            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
-              <span className="font-bold text-neutral-700 dark:text-neutral-200">
-                The first rule of Apple club is that you boast about Apple club.
-              </span>{" "}
-              Keep a journal, quickly jot down a grocery list, and take amazing
-              class notes. Want to convert those notes to text? No problem.
-              Langotiya jeetu ka mara hua yaar is ready to capture every
-              thought.
-            </p>
-            <Image
-              src="https://assets.aceternity.com/macbook.png"
-              alt="Macbook mockup from Aceternity UI"
-              height="500"
-              width="500"
-              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
-            />
-          </div>
-        );
-      })}
+      {contents.map((item, index) => (
+        <div
+          key={"dummy-content-" + index}
+          className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-12 rounded-3xl mb-4 text-center"
+        >
+          <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-xl font-sans max-w-2xl mx-auto leading-relaxed">
+            <span className="font-bold text-neutral-700 dark:text-neutral-200 block mb-2">
+              {item.title}
+            </span>
+            {item.text}
+          </p>
+          <Image
+            src={item.img}
+            alt={item.title}
+            height={400}
+            width={400}
+            className="mt-6 md:w-1/2 h-auto mx-auto object-contain"
+            loading="lazy"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      ))}
     </>
   );
-};
+});
 
+DummyContent.displayName = "DummyContent";
+
+// Move data outside component to prevent recreation on every render
 const data = [
   {
     category: "Artificial Intelligence",
     title: "You can do more with AI.",
     src: "/moreWithAi.png",
-    content: <DummyContent />,
   },
   {
     category: "Productivity",
     title: "Enhance your productivity.",
     src: "/productivity.jpg",
-    content: <DummyContent />,
   },
   {
-  category: "AI Solutions",
-  title: "Introducing SageIQ Vision — Smarter Business Insights.",
-  src: "/AiImae.jpg",
-  content: <DummyContent />,
-},
-
-{
-  category: "Automation",
-  title: "Seamless Data Mapping for Smarter Decisions.",
-  src: "/automation.jpg",
-  content: <DummyContent />,
-},
-
-{
-  category: "Innovation",
-  title: "AI-Powered Analytics That Redefine Performance.",
-  src: "/innovation.jpg",
-  content: <DummyContent />,
-},
-
-{
-  category: "Training",
-  title: "Join SageIQ — Now Training AI Engineers.",
-  src: "/joinSageIQ.jpg",
-  content: <DummyContent />,
-},
-
+    category: "AI Solutions",
+    title: "Introducing SageIQ Vision — Smarter Business Insights.",
+    src: "/AiImae.jpg",
+  },
+  {
+    category: "Automation",
+    title: "Seamless Data Mapping for Smarter Decisions.",
+    src: "/automation.jpg",
+  },
+  {
+    category: "Innovation",
+    title: "AI-Powered Analytics That Redefine Performance.",
+    src: "/innovation.jpg",
+  },
+  {
+    category: "Training",
+    title: "Join SageIQ — Now Training AI Engineers.",
+    src: "/joinSageIQ.jpg",
+  },
 ];
+
+export default function AppleCardsCarouselDemo() {
+  const cards = useMemo(
+    () =>
+      data.map((card, index) => (
+        <div key={card.src} className="card-hover-zone">
+          <Card card={{ ...card, content: <DummyContent /> }} index={index} />
+        </div>
+      )),
+    []
+  );
+  return (
+    <div className="w-full h-full py-20 ">
+       <CustomCursor />
+      <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl max-sm:text-3xl  relative z-30 text-white font-sans">
+        Get to know <span className="text-cyan-300 font-bold">SageIQ.</span>
+      </h2>
+      <Carousel items={cards} />
+    </div>
+  );
+}

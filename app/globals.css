@@ -11,6 +11,11 @@
   100% { transform: translateY(0px) scale(1); }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
