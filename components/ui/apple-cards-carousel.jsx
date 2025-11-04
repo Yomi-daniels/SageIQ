@@ -158,6 +158,16 @@ export const Card = memo(({ card, index, layout = false }) => {
   }, [open, handleClose])
 
   useOutsideClick(containerRef, handleClose)
+    // Memoize glowing effect props
+const glowingEffectProps = {
+  blur: 0,
+  borderWidth: 4,
+  spread: 80,
+  glow: true,
+  disabled: false,
+  proximity: 64,
+  inactiveZone: 0.01,
+};
 
   return (
     <>
@@ -176,10 +186,10 @@ export const Card = memo(({ card, index, layout = false }) => {
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900 "
+              className="relative mx-auto my-10 h-fit max-w-5xl  bg-white p-4 font-sans md:p-10 dark:bg-neutral-900 "
             >
               <button
-                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
+                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center  bg-black dark:bg-white"
                 onClick={handleClose}
                 aria-label="Close modal"
               >
@@ -202,13 +212,23 @@ export const Card = memo(({ card, index, layout = false }) => {
           </div>
         )}
       </AnimatePresence>
+      
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden md:h-[40rem] md:w-96 dark:bg-neutral-900 inset-0 rounded-3xl border-[5px]  border-transparent animate-borderMove"
         aria-label={`Open ${card.title}`}
+         style={{
+         background: "linear-gradient(90deg, #16EFFF, transparent, #16EFFF)",
+         backgroundSize: "300% 300%",
+         WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+         
+         padding: "2px"
+       }}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0  h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+       
+        
+        <div className="pointer-events-none absolute inset-x-0 top-0  h-full bg-gradient-to-b from-black/50 via-transparent to-transparent z-30" />
         <div className="relative p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}

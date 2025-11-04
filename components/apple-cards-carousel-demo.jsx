@@ -29,7 +29,7 @@ const DummyContent = memo(() => {
       {contents.map((item, index) => (
         <div
           key={"dummy-content-" + index}
-          className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-12 rounded-3xl mb-4 text-center"
+          className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-12  mb-4 text-center"
         >
           <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-xl font-sans max-w-2xl mx-auto leading-relaxed">
             <span className="font-bold text-neutral-700 dark:text-neutral-200 block mb-2">
@@ -92,7 +92,7 @@ export default function AppleCardsCarouselDemo() {
   const cards = useMemo(
     () =>
       data.map((card, index) => (
-        <div key={card.src} className="card-hover-zone">
+        <div key={card.src} className="card-hover-zone ">
           <Card card={{ ...card, content: <DummyContent /> }} index={index} />
         </div>
       )),

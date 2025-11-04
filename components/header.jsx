@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Loader2, CheckCircle } from "lucide-react"
+import Enroll from "@/components/Enroll"
 
 export default function Header() {
   const [formData, setFormData] = useState({
@@ -184,97 +185,10 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+ {/* ENROLL FORM MODAL */}
+<Enroll showForm={showForm} setShowForm={setShowForm} />
 
-      {/* ENROLL FORM MODAL */}
-      <AnimatePresence>
-        {showForm && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowForm(false)}
-              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60]"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              animate={{ opacity: fadeOut ? 0 : 1, y: fadeOut ? 40 : 0, scale: fadeOut ? 0.95 : 1 }}
-              exit={{ opacity: 0, y: 40, scale: 0.95 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="fixed inset-0 flex items-center justify-center z-[70] p-4"
-            >
-              <div className="relative w-full max-w-lg bg-[#0E0C15] border border-[#00D2FF]/40 rounded-2xl shadow-[0_0_30px_#00D2FF33] overflow-hidden">
-                {/* Header */}
-                <div className="sticky top-0 flex items-center justify-between p-5 bg-[#0E0C15]/90 border-b border-[#00D2FF]/30">
-                  <h2 className="text-2xl font-semibold text-white">Training Enrollment</h2>
-                  <button onClick={() => setShowForm(false)} className="text-gray-400 hover:text-[#00D2FF] transition">
-                    <X size={24} />
-                  </button>
-                </div>
-
-                {/* Progress Bar */}
-                {isSubmitting && (
-                  <div className="h-1 w-full bg-[#0E0C15]">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: `${progress}%` }}
-                      transition={{ ease: "easeInOut", duration: 0.3 }}
-                      className="h-1 bg-[#00D2FF]"
-                    />
-                  </div>
-                )}
-
-                {/* Form Content */}
-                <div className="p-6">
-                  {submitStatus === "success" ? (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="text-center py-10"
-                    >
-                      <CheckCircle size={64} className="text-[#00D2FF] mx-auto mb-4 animate-bounce" />
-                      <h3 className="text-lg font-semibold text-white mb-2">Enrollment Successful!</h3>
-                      <p className="text-gray-400">Thank you for enrolling — our team will reach out soon.</p>
-                    </motion.div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <input name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" required className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white placeholder-gray-500" />
-                      <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white placeholder-gray-500" />
-                      <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white placeholder-gray-500" />
-                      <select name="trainingInterest" value={formData.trainingInterest} onChange={handleChange} required className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white">
-                        <option value="">Select a training</option>
-                        <option value="web">Web Development</option>
-                        <option value="data">Data Science</option>
-                        <option value="ai">AI & Machine Learning</option>
-                      </select>
-                      <select name="experience" value={formData.experience} onChange={handleChange} required className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white">
-                        <option value="">Select level</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
-                      </select>
-                      <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message (optional)" rows={3} className="w-full px-4 py-2 bg-[#1A1825] border border-[#00D2FF]/30 rounded-lg text-white placeholder-gray-500 resize-none" />
-
-                      <button type="submit" disabled={isSubmitting} className="w-full py-3 mt-6 bg-[#00D2FF] text-black font-semibold rounded-lg hover:bg-[#00D2FF]/80 transition flex items-center justify-center gap-2">
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 size={18} className="animate-spin" />
-                            AI is generating...
-                          </>
-                        ) : (
-                          "Submit Enrollment"
-                        )}
-                      </button>
-                    </form>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+           
     </div>
   )
 }
