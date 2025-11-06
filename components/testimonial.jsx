@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
+import { Quote } from 'lucide-react'
 const Testimonial = () => {
     const testimonials = [
     {
@@ -64,19 +65,21 @@ const Testimonial = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className=" bg-cyan-600">
-              <CardContent className="p-6">
+            <div key={testimonial.id} className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden min-h-[320px]">
+              <Card className="bg-[#0E0C15] rounded-xl h-full">
+                <CardContent className="p-6 h-full">
                 {/* Stars */}
-                <div className="flex gap-1 mb-4">
+                <Quote className=' text-white mb-4' />
+                {/* <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-yellow-400">
                       ★
                     </span>
                   ))}
-                </div>
+                </div> */}
 
                 {/* Quote */}
-                <p className="text-foreground mb-6 leading-relaxed">"{testimonial.content}"</p>
+                <p className="text-white mb-6 leading-relaxed">"{testimonial.content}"</p>
 
                 {/* Author */}
                 <div className="flex items-center gap-3">
@@ -86,12 +89,13 @@ const Testimonial = () => {
                     className="w-12 h-12 rounded-full bg-muted"
                   />
                   <div>
-                    <p className="font-semibold text-foreground">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-semibold text-white">{testimonial.name}</p>
+                    <p className="text-sm text-white/70">{testimonial.role}</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
       </section>

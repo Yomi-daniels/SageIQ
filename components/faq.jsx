@@ -52,10 +52,10 @@ const faq = () => {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion type="single" collapsible className="w-full space-y-14">
           {faqs.map((faq) => (
-            <AccordionItem key={faq.id} value={faq.id} className="border border-border rounded-lg px-6">
-              <AccordionTrigger className="hover:text-primary transition">
+            <AccordionItem key={faq.id} value={faq.id} className="border border-[#00D2FF] rounded-lg px-6">
+              <AccordionTrigger className="hover:text-white transition">
                 <span className="text-lg font-semibold text-foreground text-left">{faq.question}</span>
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground pt-4">{faq.answer}</AccordionContent>

@@ -32,9 +32,13 @@ export default function HeroScrollDemo() {
     return () => observer.disconnect();
   }, []);
 
+ 
+
   return (
-    <div className="relative flex flex-col overflow-hidden bg-black ">
+    <div className="relative flex flex-col overflow-hidden bg-black  py-32">
+
       <ContainerScroll
+      
         titleComponent={
           <>
             <h1 className="text-4xl font-semibold text-white text-center">
@@ -46,6 +50,7 @@ export default function HeroScrollDemo() {
           </>
         }
       >
+        
         <video
           ref={videoRef}
           src="/videos/SageVideo.mp4"

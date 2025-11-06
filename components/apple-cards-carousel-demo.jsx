@@ -14,14 +14,14 @@ const allContents = useMemo(() => [
       category: "Artificial Intelligence",
       title: "AI that adapts to your workflow",
       text: "SageIQ helps you turn complex data into clear, actionable insights — powered by adaptive intelligence designed for business growth. Our AI learns from your patterns and preferences, delivering personalized recommendations that evolve with your needs.",
-      img: "/moreWithAi.png", // ✅ updated path
+      img: "/moreWithAi.png",
       type: "image",
     },
     {
       category: "Machine Learning",
       title: "Train models that understand your business",
       text: "Our platform enables you to build and deploy machine learning models without extensive coding knowledge. Leverage pre-trained models or create custom solutions that address your specific business challenges with unprecedented accuracy.",
-      img: "/AiImae.jpg", // ✅ updated path
+      img: "/AiImae.jpg", 
       type: "image",
     },
   ],
@@ -32,21 +32,21 @@ const allContents = useMemo(() => [
       category: "Productivity",
       title: "Smarter automation, faster results",
       text: "Cut repetitive tasks and scale your efficiency. SageIQ automates your operations while keeping you in full control. From data entry to complex workflows, our platform handles the heavy lifting so you can focus on strategic decisions.",
-      img: "/productivity.jpg", // ✅ updated path
+      img: "/productivity.jpg", 
       type: "image",
     },
     {
       category: "Workflow Optimization",
       title: "Streamline your entire operation",
       text: "Transform manual processes into intelligent automated workflows. Our visual workflow builder lets you connect apps, trigger actions, and orchestrate complex business logic without writing a single line of code.",
-      img: "/automation.jpg", // ✅ updated path
+      img: "/automation.jpg", 
       type: "image",
     },
     {
       category: "Time Management",
       title: "Reclaim hours every week",
       text: "Let AI handle your calendar management and task prioritization. SageIQ analyzes your work patterns and suggests optimal schedules, ensuring you spend time on what matters most.",
-      img: "/innovation.jpg", // ✅ updated path
+      img: "/innovation.jpg", 
       type: "image",
     },
   ],
@@ -57,14 +57,14 @@ const allContents = useMemo(() => [
       category: "Analytics",
       title: "Next-gen analytics you can trust",
       text: "From predictive trends to real-time data visualization, SageIQ redefines how teams analyze and make smarter decisions. Our advanced algorithms surface hidden patterns and opportunities, giving you the confidence to act quickly in dynamic markets.",
-      img: "/joinSageIQ.jpg", // ✅ updated path
+      img: "/joinSageIQ.jpg", 
       type: "image",
     },
     {
       category: "Business Intelligence",
       title: "Data-driven decisions at scale",
       text: "Unify data from across your organization into actionable insights. Our BI platform combines traditional reporting with AI-powered recommendations, helping leadership make informed decisions based on comprehensive, real-time data.",
-      img: "/automation.jpg", // ✅ updated path
+      img: "/automation.jpg", 
       type: "image",
     },
   ],
@@ -170,7 +170,7 @@ export default function AppleCardsCarouselDemo() {
     []
   );
   return (
-    <div className="w-full h-full py-20 ">
+    <div className="w-full h-full py-20  ">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl max-sm:text-3xl  relative z-30 text-white font-sans">
         Get to know <span className="text-cyan-300 font-bold">SageIQ.</span>
       </h2>
