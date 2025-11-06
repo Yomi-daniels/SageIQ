@@ -228,8 +228,9 @@ const glowingEffectProps = {
       >
        
         
-        <div className="pointer-events-none absolute inset-x-0 top-0  h-full bg-gradient-to-b from-black/50 via-transparent to-transparent z-30" />
-        <div className="relative p-8">
+  {/* background gradient overlay - moved behind text */}
+  <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent z-0" />
+  <div className="relative p-8 z-20">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
             className="text-left font-sans text-sm font-medium text-white md:text-base"
@@ -243,7 +244,7 @@ const glowingEffectProps = {
             {card.title}
           </motion.p>
         </div>
-        <BlurImage src={card.src} alt={card.title} fill className="absolute inset-0 object-cover" />
+  <BlurImage src={card.src} alt={card.title} fill className="absolute inset-0 object-cover z-0" />
       </motion.button>
       {/* Gradient glows - moved outside AnimatePresence */}
       <div className="max-sm:hidden pointer-events-none ">
