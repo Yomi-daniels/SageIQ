@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useOutsideClick } from "@/hooks/use-outside-click"
 import Image from "next/image"
 import RadialGlow from "../RadialGlow"
+import CustomCursor from "../CustomCursor"
 
 export const CarouselContext = createContext({
   onCardClose: () => {},
@@ -212,7 +213,7 @@ const glowingEffectProps = {
           </div>
         )}
       </AnimatePresence>
-      
+       {/* <CustomCursor /> */}
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
