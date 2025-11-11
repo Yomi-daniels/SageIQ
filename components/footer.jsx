@@ -1,16 +1,19 @@
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className= "border-t-2 border-t-slate-100 bg-black ">
+    <footer className= "border-t-2 border-t-[#16EFFF] bg-black ">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="font-bold text-lg text-foreground mb-4">Brand</h3>
+           <div className="w-[150px] h-[150px] relative object-cover">
+             <Image src="/sageiq.png" fill className="w-fulll h-full"/>
+           </div>
             <p className="text-sm text-muted-foreground">Building amazing products to help you succeed.</p>
           </div>
 
@@ -97,7 +100,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-border my-8" />
+        <div className="border-t border-t-[#16EFFF] my-8" />
 
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between">

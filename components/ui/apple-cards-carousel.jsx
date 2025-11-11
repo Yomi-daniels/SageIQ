@@ -248,9 +248,9 @@ const glowingEffectProps = {
   <BlurImage src={card.src} alt={card.title} fill className="absolute inset-0 object-cover z-0" />
       </motion.button>
       {/* Gradient glows - moved outside AnimatePresence */}
-      <div className="max-sm:hidden pointer-events-none ">
+      {/* <div className="max-sm:hidden pointer-events-none ">
         <RadialGlow className="top-[-8rem] left-[-4rem]" size={300} color="#00D2FF" />
-      </div>
+      </div> */}
     </>
   )
 })

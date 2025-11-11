@@ -18,7 +18,7 @@ import Contact from "@/components/contact"
 export default function ShaderShowcase() {;
   return (
     <div>
-      <div className="h-full relative ">
+      <div className="h-full relative overflow-hidden">
         {/* Place Header at top level so it can overlay all page sections */}
         <Header />
         <ShaderBackground>

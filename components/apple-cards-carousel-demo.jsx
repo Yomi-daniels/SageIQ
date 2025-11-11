@@ -163,7 +163,7 @@ export default function AppleCardsCarouselDemo() {
     () =>
       data.map((card, index) => (
         <div key={card.src} className="card-hover-zone relative">
-          {/* <CustomCursor /> */}
+          <CustomCursor />
           <Card card={{ ...card, content: <DummyContent cardIndex={index} /> }} index={index} />
         </div>
       )),

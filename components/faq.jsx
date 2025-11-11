@@ -52,7 +52,7 @@ const faq = () => {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-14">
+        <Accordion type="single" collapsible className="w-full space-y-6">
           {faqs.map((faq) => (
             <AccordionItem key={faq.id} value={faq.id} className="border border-[#00D2FF] rounded-lg px-6">
               <AccordionTrigger className="hover:text-white transition">

@@ -31,14 +31,14 @@ export default function CustomCursor() {
 
   return (
     <div
-      className={`fixed top-0 left-0 z-[9999] pointer-events-none transition-transform duration-100 ease-out ${
+      className={`fixed top-0 left-0 z-[9999] pointer-events-none transition-transform duration-100 ease-out  ${
         isVisible ? "opacity-100 scale-100" : "opacity-0 scale-50"
       }`}
       style={{
         transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
       }}
     >
-      <div className="relative flex items-center justify-center w-20 h-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 border border-cyan-300/50 backdrop-blur-md text-white text-sm font-semibold">
+      <div className="relative flex items-center justify-center w-20 h-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 border border-cyan-300/50 backdrop-blur-md text-white text-sm font-semibold cursor-pointer">
         Click Here
       </div>
     </div>

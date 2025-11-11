@@ -9,6 +9,7 @@ import CardStack from "@/components/CardStack"
 import Image from "next/image";
 import RadialGlow from "./RadialGlow";
 import React from "react";
+import LoadingText from "@/components/ui/loadingText.jsx";
 
 export const Gradient = () => {
   return (
@@ -33,6 +34,8 @@ export default function HeroContent() {
     }
   };
 
+  
+
   return (
     <section className="relative w-full h-[140vh] max-sm:h-[100dvh] flex flex-col justify-between items-center text-center pt-32 pb-16 overflow-hidden">
       {/* Text Content */}
@@ -43,9 +46,8 @@ export default function HeroContent() {
           style={{ filter: "url(#glass-effect)" }}
         >
           <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-e-lg" />
-          <span className="text-white/90 text-sm font-medium relative z-10 font-body mb-2 tracking-wide">
-            AI is generating<span className="animate-pulse ml-1">...</span>
-          </span>
+          <LoadingText/>
+
 
           <div className="relative w-full h-[4px] bg-white/10 rounded-full overflow-hidden">
             <div

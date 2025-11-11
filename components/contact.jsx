@@ -15,7 +15,7 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
 
-      const handleChange = () => {
+  const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -23,7 +23,7 @@ const Contact = () => {
     }))
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError("")
@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <div>
         {/* Contact Section */}
-      <section id="contact" className="max-w-2xl mx-auto px-4 py-16 ">
+      <section id="contact" className="max-w-2xl mx-auto px-4 py-16 overflow-hidden">
         <div className="text-center mb-12 ">
           <h2 className="text-4xl font-bold text-foreground mb-4 text-balance">Contact Us</h2>
           <p className="text-lg text-muted-foreground">
@@ -63,8 +63,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-cyan-600 p-[3rem] rounded-md">
-          <div>
+        <div className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-[#0E0C15] p-[3rem] rounded-xl">
+            <div>
             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
               Name
             </label>
@@ -76,7 +77,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Your name"
               required
-              className="w-full"
+              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
             />
           </div>
 
@@ -92,7 +93,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="your@email.com"
               required
-              className="w-full"
+              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
             />
           </div>
 
@@ -108,7 +109,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What is this about?"
               required
-              className="w-full"
+              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
             />
           </div>
 
@@ -124,7 +125,7 @@ const Contact = () => {
               placeholder="Your message here..."
               required
               rows={6}
-              className="w-full"
+              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
             />
           </div>
 
@@ -136,10 +137,11 @@ const Contact = () => {
 
           {error && <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">{error}</div>}
 
-          <Button type="submit" disabled={loading} className="w-full">
+          <Button type="submit" disabled={loading} className="w-full bg-[#16EFFF] text-black hover:bg-[#16EFFF]/90 cursor-pointer">
             {loading ? "Sending..." : "Send Message"}
           </Button>
         </form>
+        </div>
   
         {/* Contact Info */}
         {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 bg-cyan-500 opacity-70 p-[1.3rem] rounded-lg">
