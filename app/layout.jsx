@@ -10,6 +10,11 @@ const sora = Sora({
   subsets: ["latin"],
   variable: "--font-heading",
 })
+export const metadata = {
+  title: "SAGEIQ - AI Telecom Training Platform",
+  description:
+    "Join TelecomX — where you learn cutting-edge telecom and AI skills with practical, real-world training experiences.",
+};
 
 export default function RootLayout({ children }) {
   return (
