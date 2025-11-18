@@ -48,7 +48,7 @@ const LoadingText = () => {
   return (
     <span className="text-white/90 text-sm font-medium relative z-10 font-body mb-2 tracking-wide">
       {displayedText}
-      <span className="animate-pulse text-cyan-400 ml-[2px]">|</span>
+      <span className="animate-ping text-cyan-400 ml-[2px]">|</span>
     </span>
   );
 };

@@ -11,10 +11,30 @@ const sora = Sora({
   variable: "--font-heading",
 })
 export const metadata = {
-  title: "SAGEIQ - AI Telecom Training Platform",
+  title: "Sage IQ - Smart AI Automation Platform",
   description:
-    "Join TelecomX — where you learn cutting-edge telecom and AI skills with practical, real-world training experiences.",
+    "Sage IQ helps you automate tasks, generate ideas, and streamline your workflow using the power of AI.",
+  openGraph: {
+    title: "Sage IQ - Smart AI Automation Platform",
+    description:
+      "Automate tasks, generate content, and make data-driven decisions with Sage IQ — your personal AI assistant for business growth.",
+    url: "https://sageiq.com", // replace with your actual domain
+    siteName: "Sage IQ",
+    images: [
+      {
+        url: "public\sagelogo.png", // add your image inside the /public folder
+        width: 1200,
+        height: 630,
+        alt: "Sage IQ Preview",
+      },
+    ],
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (

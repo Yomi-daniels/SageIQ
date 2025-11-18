@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useMemo, memo } from "react";
+import React, { useMemo, memo, useRef, useEffect } from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import Image from "next/image";
 import CustomCursor from "@/components/CustomCursor";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 // Enhanced blog-style content component
 const DummyContent = memo(({ cardIndex }) => {
@@ -159,18 +160,43 @@ const data = [
 ];
 
 export default function AppleCardsCarouselDemo() {
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { amount: 0.35 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start(inView ? "show" : "hide");
+  }, [inView, controls]);
+
+  const cardVariants = {
+    hidden: (i) => ({ opacity: 0, x: 48 }),
+    show: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.6 + i * 0.12, delay: i * 0.05, ease: "easeOut" },
+    }),
+    hide: (i) => ({ opacity: 0, x: 48, transition: { duration: Math.max(0.35, 0.45 + i * 0.04), ease: "easeIn" } }),
+  };
+
   const cards = useMemo(
     () =>
       data.map((card, index) => (
-        <div key={card.src} className="card-hover-zone relative">
+        <motion.div
+          key={card.src}
+          className="card-hover-zone relative"
+          custom={index}
+          variants={cardVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <CustomCursor />
           <Card card={{ ...card, content: <DummyContent cardIndex={index} /> }} index={index} />
-        </div>
+        </motion.div>
       )),
-    []
+    [controls]
   );
   return (
-    <div className="w-full h-full py-20  ">
+    <div ref={sectionRef} className="w-full h-full py-20  ">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl max-sm:text-3xl  relative z-30 text-white font-sans">
         Get to know <span className="text-cyan-300 font-bold">SageIQ.</span>
       </h2>

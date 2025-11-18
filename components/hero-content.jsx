@@ -8,7 +8,8 @@ import Notification from "@/components/Notification"
 import CardStack from "@/components/CardStack"
 import Image from "next/image";
 import RadialGlow from "./RadialGlow";
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from 'framer-motion'
 import LoadingText from "@/components/ui/loadingText.jsx";
 
 export const Gradient = () => {
@@ -33,15 +34,63 @@ export default function HeroContent() {
       console.warn(`Section "${id}" not found`);
     }
   };
+  
+  // Framer Motion variants
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        // longer stagger so each text part has breathing room
+        staggerChildren: 0.12,
+        delayChildren: 0.08,
+      },
+    },
+  }
 
+  const item = {
+    hidden: { opacity: 0, y: 18, scale: 0.96 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        // spring for a subtle "pop" effect
+        type: 'spring',
+        stiffness: 260,
+        damping: 22,
+        duration: 0.6,
+      },
+    },
+  }
+
+  // image comes from bottom to top and is delayed so it follows the text
+  const imageAnim = {
+    hidden: { opacity: 0, y: 60, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.9, ease: 'easeOut', delay: 0.6 },
+    },
+  }
   
 
+  // ref for scroll-based transforms
+  const containerRef = useRef(null)
+
+  // use framer-motion scroll hooks to fade the hero as the user scrolls away
+  // map the section's start->start to progress 0 so the hero is fully visible on load
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] })
+  // make the fade subtler: spread it out (0 -> 0.8) and don't go fully transparent (end at 0.25)
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.25])
+
   return (
-    <section className="relative w-full h-[140vh] max-sm:h-[100dvh] flex flex-col justify-between items-center text-center pt-32 pb-16 overflow-hidden">
+    <motion.section ref={containerRef} style={{ opacity }} className="relative w-full h-[140vh] max-sm:h-[100dvh] flex flex-col justify-between items-center text-center pt-32 pb-16 overflow-hidden">
       {/* Text Content */}
-      <div className="relative max-w-3xl mx-auto px-4 z-10 flex flex-col items-center justify-center">
+  <motion.div className="relative max-w-3xl mx-auto px-4 z-10 flex flex-col items-center justify-center" variants={container} initial="hidden" animate="show">
         {/* AI Generating Badge */}
-        <div
+        <motion.div
+          variants={item}
           className="inline-flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 backdrop-blur-md mb-6 relative overflow-hidden w-[240px] shadow-lg border border-white/10"
           style={{ filter: "url(#glass-effect)" }}
         >
@@ -55,10 +104,10 @@ export default function HeroContent() {
               style={{ background: "#00D2FF" }}
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Main Heading */}
-        <h1 className="text-[3.5rem] relative lg:w-[1200px] md:max-w-[1200px] max-sm:max-w-[1200px] max-sm:text-[2.5rem] text-white mb-6 font-heading font-[100] leading-[1]">
+  <motion.h1 variants={item} className="text-[3.5rem] relative lg:w-[1200px] md:max-w-[1200px] max-sm:max-w-[1200px] max-sm:text-[2.5rem] text-white mb-6 font-heading font-[100] leading-[1]">
           Smarter Decisions. Faster Solutions. <br />
           <span className="font-bold">Powered by AI with </span>
           <span className="inline-block relative text-cyan-400 font-bold">
@@ -72,17 +121,17 @@ export default function HeroContent() {
               loading="lazy"
             />
           </span>
-        </h1>
+  </motion.h1>
 
         {/* Subtext */}
-        <p className="body-1 text-white/70 mb-8">
+        <motion.p variants={item} className="body-1 text-white/70 mb-8">
           Unlock the future of intelligence. Our platform helps businesses
           automate processes, gain insights, and scale confidently with
           AI-driven solutions.
-        </p>
+        </motion.p>
 
         {/* Buttons */}
-        <div className="flex items-center justify-center gap-4 flex-wrap">
+        <motion.div variants={item} className="flex items-center justify-center gap-4 flex-wrap">
           <button
             onClick={() => scrollToSection("services")}
             className="px-8 py-3 bg-transparent border border-[#16EFFF] text-[#16EFFF] font-body font-medium text-sm transition-all duration-200 hover:bg-[#16EFFF] hover:text-white cursor-pointer"
@@ -95,11 +144,11 @@ export default function HeroContent() {
           >
             Get Started
           </button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Hero Image */}
-      <div className="relative max-w-[23rem] mx-auto md:max-w-5xl xl:mb-24 flex flex-col justify-center items-center">
+      <motion.div className="relative max-w-[23rem] mx-auto md:max-w-5xl xl:mb-24 flex flex-col justify-center items-center" initial="hidden" animate="show" variants={imageAnim}>
         <div className="relative z-1 p-0.5 rounded-2xl bg-conic-gradient">
           <div className="relative bg-n-8 rounded-[1rem]">
             <div className="h-[500px] w-[1018px] bg-n-10 rounded-t-[0.9rem] z-30 relative overflow-auto" />
@@ -116,13 +165,13 @@ export default function HeroContent() {
           <Gradient />
         </div>
         <BackgroundCircles />
-      </div>
+      </motion.div>
 
       {/* Gradient Glows */}
       <div className="z-40 max-sm:hidden">
         <RadialGlow className="top-[-6rem] left-[-8rem]" size={600} color="#00D2FF" />
         <RadialGlow className="bottom-[-5rem] right-[-6rem]" size={500} color="#00D2FF" />
       </div>
-    </section>
+    </motion.section>
   );
 }

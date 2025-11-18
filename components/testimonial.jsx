@@ -1,6 +1,9 @@
-import React from 'react'
+"use client"
+
+import React, { useRef, useEffect } from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Quote } from 'lucide-react'
+import { motion, useInView, useAnimation } from 'framer-motion'
 const Testimonial = () => {
     const testimonials = [
     {
@@ -51,10 +54,47 @@ const Testimonial = () => {
       image: "/professional-man-3.jpg",
     },
   ]
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { amount: 0.35 })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    controls.start(inView ? 'show' : 'hide')
+  }, [inView, controls])
+
+  const directions = ["top", "left", "right", "center", "bottom"]
+
+  const variants = {
+    hidden: (i) => {
+      const dir = directions[i % directions.length]
+      switch (dir) {
+        case 'top':
+          return { opacity: 0, y: -48 }
+        case 'left':
+          return { opacity: 0, x: -48 }
+        case 'right':
+          return { opacity: 0, x: 48 }
+        case 'center':
+          return { opacity: 0, scale: 0.92 }
+        case 'bottom':
+        default:
+          return { opacity: 0, y: 48 }
+      }
+    },
+    show: (i) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6 + (i % directions.length) * 0.12, delay: (i % directions.length) * 0.06, ease: 'easeOut' },
+    }),
+    hide: (i) => ({ opacity: 0, transition: { duration: 0.45, ease: 'easeIn' } }),
+  }
+
   return (
     <div>
       {/* Testimonials Section */}
-      <section id="testimonials" className="max-w-6xl mx-auto px-4 py-16 ">
+      <section ref={sectionRef} id="testimonials" className="max-w-6xl mx-auto px-4 py-16 ">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4 text-balance">Loved by thousands of users</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -64,38 +104,34 @@ const Testimonial = () => {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden min-h-[320px]">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={testimonial.id}
+              custom={index}
+              variants={variants}
+              initial="hidden"
+              animate={controls}
+              className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden min-h-[320px]"
+            >
               <Card className="bg-[#0E0C15] rounded-xl h-full">
                 <CardContent className="p-6 h-full">
-                {/* Stars */}
-                <Quote className=' text-white mb-4' />
-                {/* <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">
-                      ★
-                    </span>
-                  ))}
-                </div> */}
+                  {/* Stars */}
+                  <Quote className=" text-white mb-4" />
 
-                {/* Quote */}
-                <p className="text-white mb-6 leading-relaxed">"{testimonial.content}"</p>
+                  {/* Quote */}
+                  <p className="text-white mb-6 leading-relaxed">"{testimonial.content}"</p>
 
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full bg-muted"
-                  />
-                  <div>
-                    <p className="font-semibold text-white">{testimonial.name}</p>
-                    <p className="text-sm text-white/70">{testimonial.role}</p>
+                  {/* Author */}
+                  <div className="flex items-center gap-3">
+                    <img src={testimonial.image || "/placeholder.svg"} alt={testimonial.name} className="w-12 h-12 rounded-full bg-muted" />
+                    <div>
+                      <p className="font-semibold text-white">{testimonial.name}</p>
+                      <p className="text-sm text-white/70">{testimonial.role}</p>
+                    </div>
                   </div>
-                </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>

@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+"use client"
+
+import React, { useState, useRef, useEffect } from 'react'
+import { motion, useInView, useAnimation } from 'framer-motion'
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -51,19 +54,39 @@ const Contact = () => {
       setLoading(false)
     }
   }
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { amount: 0.4 })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    controls.start(inView ? 'show' : 'hide')
+  }, [inView, controls])
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 28 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    hide: { opacity: 0, y: 18, transition: { duration: 0.45, ease: 'easeIn' } },
+  }
+
+  const formVariants = {
+    hidden: { opacity: 0, y: 56 },
+    show: { opacity: 1, y: 0, transition: { duration: 1.05, ease: 'easeOut', delay: 0.12 } },
+    hide: { opacity: 0, y: 56, transition: { duration: 0.6, ease: 'easeIn' } },
+  }
+
   return (
     <div>
         {/* Contact Section */}
-      <section id="contact" className="max-w-2xl mx-auto px-4 py-16 overflow-hidden">
-        <div className="text-center mb-12 ">
+      <section ref={sectionRef} id="contact" className="max-w-2xl mx-auto px-4 py-16 overflow-hidden">
+        <motion.div variants={textVariants} initial="hidden" animate={controls} className="text-center mb-12 ">
           <h2 className="text-4xl font-bold text-foreground mb-4 text-balance">Contact Us</h2>
           <p className="text-lg text-muted-foreground">
             Have a question or want to work with us? We'd love to hear from you. Send us a message and we'll respond as
             soon as possible.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden">
+        <motion.div variants={formVariants} initial="hidden" animate={controls} className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden">
           <form onSubmit={handleSubmit} className="space-y-6 bg-[#0E0C15] p-[3rem] rounded-xl">
             <div>
             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -140,8 +163,8 @@ const Contact = () => {
           <Button type="submit" disabled={loading} className="w-full bg-[#16EFFF] text-black hover:bg-[#16EFFF]/90 cursor-pointer">
             {loading ? "Sending..." : "Send Message"}
           </Button>
-        </form>
-        </div>
+  </form>
+  </motion.div>
   
         {/* Contact Info */}
         {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 bg-cyan-500 opacity-70 p-[1.3rem] rounded-lg">

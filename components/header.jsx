@@ -119,10 +119,11 @@ export default function Header() {
   return (
     <div className="w-full relative z-50">
       {/* HEADER */}
-      <header
-        className={`w-full flex items-center justify-between px-6 md:px-8 py-4 fixed top-0 left-0 z-50 transition-all duration-300
-        ${scrolled ? "bg-[#0E0C15]/90 shadow-lg backdrop-blur-md" : "bg-transparent"}
-        ${hidden ? "-translate-y-full" : "translate-y-0 max-sm:border max-sm:border-gray-400 max-sm:rounded-full max-sm:mt-6 max-sm:w-[90%] max-sm:flex max-sm:ml-6 max-sm:bg-black max-sm:mx-auto"}`}
+      <motion.header
+        initial={{ y: -120, opacity: 0 }}
+        animate={{ y: hidden ? -120 : 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className={`w-full flex items-center justify-between px-6 md:px-8 py-4 fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "bg-[#0E0C15]/90 shadow-lg backdrop-blur-md" : "bg-transparent"} ${!hidden ? "max-sm:border max-sm:border-gray-400 max-sm:rounded-full max-sm:mt-6 max-sm:w-[90%] max-sm:flex max-sm:ml-6 max-sm:bg-black max-sm:mx-auto" : ""}`}
       >
         {/* Logo */}
         <div className="flex items-center max-sm:mt-2 cursor-pointer" onClick={scrollToTop}>
@@ -157,7 +158,7 @@ export default function Header() {
         <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-white z-50">
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-      </header>
+  </motion.header>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
