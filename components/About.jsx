@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import RadialGlow from "./RadialGlow";
 import { GlowingEffectDemo } from "@/components/glowing-effect-demo";
@@ -11,21 +11,36 @@ const About = () => {
   const inView = useInView(ref, { amount: 0.5 });
   const controls = useAnimation();
 
+  // detect small screens and adjust animation magnitudes/durations
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(typeof window !== 'undefined' && window.innerWidth <= 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   useEffect(() => {
     // when the section enters view start show animation; when it leaves start hide
     controls.start(inView ? "show" : "hide");
   }, [inView, controls]);
 
+  const textYOffset = isMobile ? 18 : 36;
+  const imageYOffset = isMobile ? 28 : 56;
+  const textDuration = isMobile ? 0.5 : 0.7;
+  const imageDuration = isMobile ? 0.8 : 1.05;
+  const imageDelay = isMobile ? 0.08 : 0.2;
+
   const textVariants = {
-    hidden: { opacity: 0, y: 36 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-    hide: { opacity: 0, y: 36, transition: { duration: 0.45, ease: "easeIn" } },
+    hidden: { opacity: 0, y: textYOffset },
+    show: { opacity: 1, y: 0, transition: { duration: textDuration, ease: "easeOut" } },
+    hide: { opacity: 0, y: textYOffset, transition: { duration: Math.max(0.35, textDuration / 1.5), ease: "easeIn" } },
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, y: 56 },
-    show: { opacity: 1, y: 0, transition: { duration: 1.05, ease: "easeOut", delay: 0.2 } },
-    hide: { opacity: 0, y: 56, transition: { duration: 0.6, ease: "easeIn" } },
+    hidden: { opacity: 0, y: imageYOffset },
+    show: { opacity: 1, y: 0, transition: { duration: imageDuration, ease: "easeOut", delay: imageDelay } },
+    hide: { opacity: 0, y: imageYOffset, transition: { duration: Math.max(0.4, imageDuration / 1.6), ease: "easeIn" } },
   };
 
   return (

@@ -59,7 +59,9 @@ const Contact = () => {
   const controls = useAnimation()
 
   useEffect(() => {
-    controls.start(inView ? 'show' : 'hide')
+    if (inView) {
+      controls.start('show')
+    }
   }, [inView, controls])
 
   const textVariants = {
@@ -100,7 +102,7 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="Your name"
               required
-              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
+              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#040808]"
             />
           </div>
 
