@@ -21,9 +21,13 @@ const About = () => {
   }, []);
 
   useEffect(() => {
-    // when the section enters view start show animation; when it leaves start hide
-    controls.start(inView ? "show" : "hide");
-  }, [inView, controls]);
+    // when the section enters view start show animation; on mobile always show
+    if (isMobile) {
+      controls.start("show");
+    } else {
+      controls.start(inView ? "show" : "hide");
+    }
+  }, [inView, controls, isMobile]);
 
   const textYOffset = isMobile ? 18 : 36;
   const imageYOffset = isMobile ? 28 : 56;
@@ -39,7 +43,7 @@ const About = () => {
 
   const imageVariants = {
     hidden: { opacity: 0, y: imageYOffset },
-    show: { opacity: 1, y: 0, transition: { duration: imageDuration, ease: "easeOut", delay: imageDelay } },
+    show: { opacity: 1, y: 0, transition: { duration: imageDuration, ease:"easeOut", delay: imageDelay } },
     hide: { opacity: 0, y: imageYOffset, transition: { duration: Math.max(0.4, imageDuration / 1.6), ease: "easeIn" } },
   };
 
@@ -48,7 +52,7 @@ const About = () => {
       ref={ref}
       className="relative w-full min-h-screen bg-[#0E0C15] flex flex-col items-center justify-center px-6 py-16 overflow-hidden"
     >
-      <motion.div variants={textVariants} initial="hidden" animate={controls} className="relative flex flex-col items-center text-center">
+      <motion.div variants={textVariants} initial={isMobile ? "show" : "hidden"} animate={controls} className="relative flex flex-col items-center text-center">
         <h2 className="text-[48px] font-[100] mb-6 leading-[1.2] max-sm:font-[200] max-sm:text-[1.7rem] text-white max-sm:z-10">
           You don’t have to <span className="font-bold">know</span> it all, <br />
           We will <span className="font-bold">equip</span> you with all you need.
@@ -62,7 +66,7 @@ const About = () => {
       <RadialGlow className="bottom-[-8rem] right-[-8rem]" size={600} color="#16EFFF" />
 
       {/* Background container behind cards */}
-  <motion.div variants={imageVariants} initial="hidden" animate={controls} className=" relative  max-w-7xl h-[100%] mx-auto rounded-3xl bg-black p-[4rem] max-sm:p-[1.5rem]" >
+  <motion.div variants={imageVariants} initial={isMobile ? "show" : "hidden"} animate={controls} className=" relative  max-w-7xl h-[100%] mx-auto rounded-3xl bg-black p-[4rem] max-sm:p-[1.5rem]" >
         {/* Animated border line */}
         <div className="absolute inset-0 rounded-3xl border-[5px] border-transparent animate-borderMove" 
              style={{
