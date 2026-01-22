@@ -39,7 +39,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="sm:hidden fixed inset-0 -z-10 bg-gradient-to-b from-[#062b35] via-transparent to-[#062b35]" aria-hidden="true" />
+        <div className="relative z-10">{children}</div>
+      </body>
     </html>
   )
 }

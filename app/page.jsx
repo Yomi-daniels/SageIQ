@@ -14,7 +14,7 @@ import Footer from "@/components/footer"
 import FAQ from "@/components/faq"
 import Testimonial from "@/components/testimonial"
 import Contact from "@/components/contact"
-
+import ServiceSection from "@/components/ServiceSection"
 
 
 
@@ -31,7 +31,8 @@ export default function ShaderShowcase() {;
         </ShaderBackground>
       </div>
     <section id="About"><About/>
-      <AppleCardsCarouselDemo/>
+      {/* <AppleCardsCarouselDemo/> */}
+      <ServiceSection/>
       </section>
     
     

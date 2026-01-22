@@ -91,19 +91,10 @@ export default function HeroContent() {
         {/* AI Generating Badge */}
         <motion.div
           variants={item}
-          className="inline-flex flex-col items-center px-5 py-3 rounded-xl bg-white/5 backdrop-blur-md mb-6 relative overflow-hidden w-[240px] shadow-lg border border-white/10"
-          style={{ filter: "url(#glass-effect)" }}
+          className="inline-flex flex-col items-center px-5 py-3 rounded-xl mb-6 relative"
         >
           <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-e-lg" />
-          <LoadingText/>
-
-
-          <div className="relative w-full h-[4px] bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="absolute left-0 top-0 h-full rounded-full animate-progress"
-              style={{ background: "#00D2FF" }}
-            />
-          </div>
+          <LoadingText />
         </motion.div>
 
         {/* Main Heading */}

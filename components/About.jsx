@@ -26,9 +26,11 @@ const About = () => {
       controls.start("show");
     } else {
       controls.start(inView ? "show" : "hide");
+      
     }
   }, [inView, controls, isMobile]);
 
+  
   const textYOffset = isMobile ? 18 : 36;
   const imageYOffset = isMobile ? 28 : 56;
   const textDuration = isMobile ? 0.5 : 0.7;

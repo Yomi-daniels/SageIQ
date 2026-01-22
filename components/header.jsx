@@ -179,7 +179,7 @@ export default function Header() {
             <button onClick={() => scrollToSection("contact")} className="hover:text-[#00D2FF]">Contact</button>
             <button
               onClick={() => { setMenuOpen(false); setShowForm(true) }}
-              className="px-5 py-2 rounded-full font-medium text-sm bg-white text-black hover:bg-text-cyan-400 hover:text-white"
+              className="px-3 py-3  font-medium text-md bg-white text-black hover:bg-text-cyan-400 hover:text-white"
             >
               Enroll Now
             </button>

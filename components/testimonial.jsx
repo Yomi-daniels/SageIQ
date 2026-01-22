@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Quote } from 'lucide-react'
 import { motion, useInView, useAnimation } from 'framer-motion'
@@ -54,13 +54,7 @@ const Testimonial = () => {
       image: "/professional-man-3.jpg",
     },
   ]
-  const sectionRef = useRef(null)
-  const inView = useInView(sectionRef, { amount: 0.35 })
-  const controls = useAnimation()
-
-  useEffect(() => {
-    controls.start(inView ? 'show' : 'hide')
-  }, [inView, controls])
+  
 
   const directions = ["top", "left", "right", "center", "bottom"]
 
@@ -94,7 +88,7 @@ const Testimonial = () => {
   return (
     <div>
       {/* Testimonials Section */}
-      <section ref={sectionRef} id="testimonials" className="max-w-6xl mx-auto px-4 py-16 ">
+      <section id="testimonials" className="max-w-6xl mx-auto px-4 py-16 ">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-foreground mb-4 text-balance">Loved by thousands of users</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -110,7 +104,8 @@ const Testimonial = () => {
               custom={index}
               variants={variants}
               initial="hidden"
-              animate={controls}
+              whileInView="show"
+              viewport={{ once: true, amount: 0.25 }}
               className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden min-h-[320px]"
             >
               <Card className="bg-[#0E0C15] rounded-xl h-full">

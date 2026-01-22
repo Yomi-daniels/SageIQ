@@ -16,12 +16,12 @@ export default function ShaderBackground({ children }) {
       }
     }
 
-    // ✅ Use passive listener for better performance
+    //  Use passive listener for better performance
     window.addEventListener("mousemove", handleMouseMove, { passive: true })
 
     let animationFrame
     const animate = () => {
-      // ⚙️ smoother interpolation (floaty motion)
+      //  smoother interpolation (floaty motion)
       mouse.current.x += (mouseTarget.current.x - mouse.current.x) * 0.12
       mouse.current.y += (mouseTarget.current.y - mouse.current.y) * 0.12
 
@@ -79,8 +79,8 @@ export default function ShaderBackground({ children }) {
         speed={0.25}
       />
 
-      {/* 🌀 Dark Blob */}
-      <div
+      {/*  Dark Blob */}
+      {/* <div
         ref={blobRef}
         className="absolute w-[600px] h-[600px] max-sm:w-[300px] max-sm:h-[300px] rounded-full pointer-events-none"
         style={{
@@ -93,9 +93,9 @@ export default function ShaderBackground({ children }) {
           mixBlendMode: "overlay",
           transition: "transform 0.1s ease-out",
         }}
-      />
+      /> */}
 
-      {/* 💎 Content */}
+      {/*  Content */}
       <div className="relative z-10">{children}</div>
     </div>
   )
