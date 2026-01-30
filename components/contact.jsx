@@ -89,83 +89,87 @@ const Contact = () => {
         </motion.div>
 
         <motion.div variants={formVariants} initial="hidden" animate={controls} className="rounded-2xl p-[2px] bg-gradient-to-r from-[#16EFFF] via-transparent to-[#16EFFF] overflow-hidden">
-          <form onSubmit={handleSubmit} className="space-y-6 bg-[#0E0C15] p-[3rem] rounded-xl">
-            <div>
-            <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-              Name
-            </label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              required
-              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#040808]"
-            />
-          </div>
+          <form
+  onSubmit={handleSubmit}
+  className="space-y-8 bg-[#0E0C15] p-8 md:p-12 rounded-xl"
+>
+  {/* Top grid */}
+  <div className="grid md:grid-cols-2 gap-6">
+    <div>
+      <label className="block text-sm font-medium mb-2">Name</label>
+      <Input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Your name"
+        required
+        className="h-14 px-5 bg-[#15131d] border-border focus:border-[#16EFFF]"
+      />
+    </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-              Email
-            </label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              required
-              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
-            />
-          </div>
+    <div>
+      <label className="block text-sm font-medium mb-2">Email</label>
+      <Input
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="your@email.com"
+        required
+        className="h-14 px-5 bg-[#15131d] border-border focus:border-[#16EFFF]"
+      />
+    </div>
+  </div>
 
-          <div>
-            <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-              Subject
-            </label>
-            <Input
-              id="subject"
-              name="subject"
-              type="text"
-              value={formData.subject}
-              onChange={handleChange}
-              placeholder="What is this about?"
-              required
-              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
-            />
-          </div>
+  {/* Subject full width */}
+  <div>
+    <label className="block text-sm font-medium mb-2">Subject</label>
+    <Input
+      name="subject"
+      value={formData.subject}
+      onChange={handleChange}
+      placeholder="What is this about?"
+      required
+      className="h-14 px-5 bg-[#15131d] border-border focus:border-[#16EFFF]"
+    />
+  </div>
 
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-              Message
-            </label>
-            <Textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your message here..."
-              required
-              rows={6}
-              className="w-full p-[1.2rem] focus:border-[#16EFFF] focus:ring-[#16EFFF]"
-            />
-          </div>
+  {/* Message */}
+  <div>
+    <label className="block text-sm font-medium mb-2">Message</label>
+    <Textarea
+      name="message"
+      value={formData.message}
+      onChange={handleChange}
+      placeholder="Write your message..."
+      rows={6}
+      required
+      className="px-5 py-4 bg-[#15131d] border-border focus:border-[#16EFFF]"
+    />
+  </div>
 
-          {submitted && (
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
-              Thank you! Your message has been sent successfully.
-            </div>
-          )}
+  {/* Alerts */}
+  {submitted && (
+    <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400">
+      Message sent successfully 🚀
+    </div>
+  )}
 
-          {error && <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">{error}</div>}
+  {error && (
+    <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400">
+      {error}
+    </div>
+  )}
 
-          <Button type="submit" disabled={loading} className="w-full bg-[#16EFFF] text-black hover:bg-[#16EFFF]/90 cursor-pointer">
-            {loading ? "Sending..." : "Send Message"}
-          </Button>
-  </form>
+  {/* Button */}
+  <Button
+    type="submit"
+    disabled={loading}
+    className="w-full h-14 text-lg font-semibold bg-[#16EFFF] text-black hover:scale-[1.02] transition-transform"
+  >
+    {loading ? "Sending..." : "Send Message"}
+  </Button>
+</form>
   </motion.div>
   
         {/* Contact Info */}

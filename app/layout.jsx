@@ -1,5 +1,12 @@
 import "./globals.css"
 import { Inter, Sora } from "next/font/google"
+import CookieConsent from "@/components/CookieConsent"
+import PrivacyPolicy from "@/components/PrivacyPolicy"
+import TermsOfService from "@/components/TermsOfService"
+import CookiePolicy from "@/components/CookiePolicy"
+import { PrivacyProvider } from "@/context/PrivacyContext"
+import { TermsProvider } from "@/context/TermsContext"
+import { CookieProvider } from "@/context/CookieContext"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,8 +47,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable}`}>
       <body>
-        <div className="sm:hidden fixed inset-0 -z-10 bg-gradient-to-b from-[#062b35] via-transparent to-[#062b35]" aria-hidden="true" />
-        <div className="relative z-10">{children}</div>
+        <PrivacyProvider>
+          <TermsProvider>
+            <CookieProvider>
+              <div className="sm:hidden fixed inset-0 -z-10 bg-gradient-to-b from-[#062b35] via-transparent to-[#062b35]" aria-hidden="true" />
+              <div className="relative z-10">{children}</div>
+              <CookieConsent />
+              <PrivacyPolicy />
+              <TermsOfService />
+              <CookiePolicy />
+            </CookieProvider>
+          </TermsProvider>
+        </PrivacyProvider>
       </body>
     </html>
   )

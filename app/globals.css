@@ -172,3 +172,48 @@ html {
 .heading {
   font-family: var(--font-heading); /* Sora */
 }
+/* Scrollbar Styling */
+.scrollbar-primary::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-primary::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Firefox scrollbar */
+.scrollbar-primary {
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+  scrollbar-width: thin;
+}
+
+/* Modal cyan scrollbar - more visible */
+.scrollbar-modal::-webkit-scrollbar {
+  width: 12px;
+}
+.scrollbar-modal::-webkit-scrollbar-track {
+  background: rgba(6,182,212,0.06); /* subtle cyan track */
+  border-radius: 8px;
+}
+.scrollbar-modal::-webkit-scrollbar-thumb {
+  background: #06b6d4; /* cyan */
+  border-radius: 8px;
+  border: 3px solid rgba(0,0,0,0); /* padding effect */
+}
+.scrollbar-modal::-webkit-scrollbar-thumb:hover {
+  background: #0891b2; /* darker cyan on hover */
+}
+.scrollbar-modal {
+  scrollbar-color: #06b6d4 rgba(6,182,212,0.06);
+  scrollbar-width: thin;
+} 

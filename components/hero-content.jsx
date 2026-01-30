@@ -93,7 +93,7 @@ export default function HeroContent() {
           variants={item}
           className="inline-flex flex-col items-center px-5 py-3 rounded-xl mb-6 relative"
         >
-          <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-e-lg" />
+          <div className="absolute top-0 left-1 right-1 h-px bg-gradient animate-pulse-to-r from-transparent via-white/20 to-transparent rounded-e-lg" />
           <LoadingText />
         </motion.div>
 

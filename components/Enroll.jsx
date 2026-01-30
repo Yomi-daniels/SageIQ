@@ -86,30 +86,54 @@ const Enroll = ({ showForm, setShowForm }) => {
         setSubmitStatus("idle")
     
         try {
-          await new Promise((res) => setTimeout(res, 2500)) // simulate API
-          setSubmitStatus("success")
-          setIsSubmitting(false)
-    
-          // Delay close with fade-out
-          setTimeout(() => {
-            setFadeOut(true)
+          console.log('📝 Submitting form data:', formData)
+          
+          // Call the Google Sheets API endpoint
+          const response = await fetch('/api/enroll', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+
+          console.log('📡 Response status:', response.status)
+          const result = await response.json()
+          console.log('📦 Response data:', result)
+
+          if (result.success) {
+            setSubmitStatus("success")
+            setIsSubmitting(false)
+        
+            // Delay close with fade-out
             setTimeout(() => {
-              setShowForm(false)
-              setFadeOut(false)
-              setSubmitStatus("idle")
-              setFormData({
-                fullName: "",
-                email: "",
-                phone: "",
-                trainingInterest: "",
-                experience: "",
-                message: "",
-              })
-            }, 600) // wait for fade animation to complete
-          }, 2500)
-        } catch {
+              setFadeOut(true)
+              setTimeout(() => {
+                setShowForm(false)
+                setFadeOut(false)
+                setSubmitStatus("idle")
+                setFormData({
+                  fullName: "",
+                  email: "",
+                  phone: "",
+                  trainingInterest: "",
+                  customTraining: "",
+                  experience: "",
+                  message: "",
+                })
+              }, 600)
+            }, 2500)
+          } else {
+            setSubmitStatus("error")
+            setIsSubmitting(false)
+            console.error('❌ Submission error:', result.error)
+            alert(`Error: ${result.error}`)
+          }
+        } catch (error) {
+          console.error('❌ API error:', error)
           setSubmitStatus("error")
           setIsSubmitting(false)
+          alert(`Connection error: ${error.message}`)
         }
       }
   return (

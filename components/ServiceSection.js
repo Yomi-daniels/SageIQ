@@ -8,35 +8,44 @@ export default function ServicesSection() {
   {
     id: 1,
     title: 'Intelligent Robotics',
-    image: 'https://images.pexels.com/photos/8438918/pexels-photo-8438918.jpeg',
+    image: '/intelligent_robotics.jpg',
     iconColor: 'glass'
   },
   {
     id: 2,
     title: 'AI-Powered Automation',
-    image: 'https://images.pexels.com/photos/5473956/pexels-photo-5473956.jpeg',
+    image: '/automation.jpg',
     iconColor: 'glass'
   },
   {
     id: 3,
     title: 'Machine Learning Systems',
-    image: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg',
+    image: '/machine_learning.jpg',
     iconColor: 'glass'
   },
   {
     id: 4,
     title: 'Smart Industrial Solutions',
-    image: 'https://images.pexels.com/photos/8294606/pexels-photo-8294606.jpeg',
+    image: '/smart_industrial.jpg',
     iconColor: 'glass'
   },
   {
     id: 5,
     title: 'Human–Robot Interaction',
-    image: 'https://images.pexels.com/photos/8439094/pexels-photo-8439094.jpeg',
+    image: '/human_robot_interaction.jpg',
     iconColor: 'cyan'
   }
 ]
-
+  const scrollToSection = (id) => {
+    setMenuOpen(false)
+    const element = document.getElementById(id)
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: "smooth",
+      })
+    }
+  }
 
   return (
     <section className="py-16 px-8 max-w-7xl mx-auto">
@@ -55,8 +64,8 @@ export default function ServicesSection() {
 
             <div className="flex flex-wrap gap-6">
               <a
-                href="#"
-                className="text-razor-red hover:text-cyan-100 font-medium inline-flex items-center gap-2 group"
+                onClick={() => scrollToSection("services")}
+                className="text-razor-red hover:text-cyan-100 font-medium inline-flex items-center gap-2 group cursor-pointer"
               >
                 Explore Our Solutions
                 <svg

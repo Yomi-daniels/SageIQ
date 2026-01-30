@@ -4,57 +4,58 @@ import React from 'react'
 import { Card, CardContent } from "@/components/ui/card"
 import { Quote } from 'lucide-react'
 import { motion, useInView, useAnimation } from 'framer-motion'
+import Image from 'next/image'
 const Testimonial = () => {
     const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "CEO at TechCorp",
-      content:
-        "This platform has transformed how we manage our operations. The intuitive interface and powerful features have saved us countless hours.",
-      image: "/professional-woman.png",
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "Product Manager at StartupXYZ",
-      content:
-        "Outstanding support and continuous improvements. The team really listens to feedback and implements features that matter.",
-      image: "/professional-man.png",
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Founder of Creative Agency",
-      content:
-        "The best investment we made for our business. ROI was immediate and the scalability is exactly what we needed.",
-      image: "/professional-woman-2.png",
-    },
-    {
-      id: 4,
-      name: "David Park",
-      role: "Operations Director",
-      content:
-        "Seamless integration with our existing tools. The automation features alone have reduced our workload by 40%.",
-      image: "/professional-man-2.png",
-    },
-    {
-      id: 5,
-      name: "Lisa Thompson",
-      role: "Marketing Lead at GrowthCo",
-      content: "Exceptional analytics and reporting. We now have real-time insights that drive better decision-making.",
-      image: "/professional-woman-3.png",
-    },
-    {
-      id: 6,
-      name: "James Wilson",
-      role: "CTO at InnovateTech",
-      content:
-        "The technical excellence is evident in every aspect. Security, performance, and reliability are top-notch.",
-      image: "/professional-man-3.jpg",
-    },
-  ]
-  
+  {
+    id: 1,
+    name: "Adebayo Ogunleye",
+    role: "Founder, PayLink Africa",
+    content:
+      "This platform completely changed how we run our operations. Everything is faster, cleaner, and easier to manage. Honestly, it just works.",
+    image: "/nigerian-man-1.jpg",
+  },
+  {
+    id: 2,
+    name: "Chioma Okafor",
+    role: "Product Manager, LagosTech",
+    content:
+      "The support team is top-tier. Any issue we had was handled quickly, and the constant updates show they truly understand the Nigerian market.",
+    image: "/nigerian-woman-1.jpg",
+  },
+  {
+    id: 3,
+    name: "Sadiq Bello",
+    role: "Operations Lead, Swift Logistics NG",
+    content:
+      "Automation alone saved us hours every week. Integrating this into our workflow was one of the best decisions we made this year.",
+    image: "/nigerian-man-2.jpg",
+  },
+  {
+    id: 4,
+    name: "Blessing Eze",
+    role: "CEO, Bloom Digital Agency",
+    content:
+      "From onboarding to daily usage, the experience has been smooth. The insights we get now help us make better business decisions.",
+    image: "/nigerian-woman-2.jpg",
+  },
+  {
+    id: 5,
+    name: "Tunde Adeyemi",
+    role: "CTO, FinEdge Solutions",
+    content:
+      "Security, performance, and scalability are solid. As a tech lead, I’m confident recommending this platform to any serious business.",
+    image: "/nigerian-man-3.jpg",
+  },
+  {
+    id: 6,
+    name: "Zainab Musa",
+    role: "Marketing Lead, GrowthHub NG",
+    content:
+      "The analytics are clear and actionable. We finally understand what’s working and what isn’t, without guessing.",
+    image: "/nigerian-woman-3.jpg",
+  },
+]
 
   const directions = ["top", "left", "right", "center", "bottom"]
 
@@ -111,14 +112,20 @@ const Testimonial = () => {
               <Card className="bg-[#0E0C15] rounded-xl h-full">
                 <CardContent className="p-6 h-full">
                   {/* Stars */}
-                  <Quote className=" text-white mb-4" />
+                  <Quote className=" text-[#16EFFF]  mb-4" />
 
                   {/* Quote */}
-                  <p className="text-white mb-6 leading-relaxed">"{testimonial.content}"</p>
+                  <p className="text-[#16EFFF] mb-6 leading-relaxed">"{testimonial.content}"</p>
 
                   {/* Author */}
                   <div className="flex items-center gap-3">
-                    <img src={testimonial.image || "/placeholder.svg"} alt={testimonial.name} className="w-12 h-12 rounded-full bg-muted" />
+                 <Image
+  src={testimonial.image || "/placeholder.svg"}
+  alt={testimonial.name}
+  width={48}
+  height={48}
+  className="w-12 h-12 rounded-full object-cover bg-muted"
+/>
                     <div>
                       <p className="font-semibold text-white">{testimonial.name}</p>
                       <p className="text-sm text-white/70">{testimonial.role}</p>

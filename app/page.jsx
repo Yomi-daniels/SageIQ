@@ -24,11 +24,11 @@ export default function ShaderShowcase() {;
       <div className="h-full relative overflow-hidden">
         {/* Place Header at top level so it can overlay all page sections */}
         <Header />
-        <ShaderBackground>
+        {/* <ShaderBackground> */}
           <section id="/">
             <HeroContent />
           </section>
-        </ShaderBackground>
+        {/* </ShaderBackground> */}
       </div>
     <section id="About"><About/>
       {/* <AppleCardsCarouselDemo/> */}
